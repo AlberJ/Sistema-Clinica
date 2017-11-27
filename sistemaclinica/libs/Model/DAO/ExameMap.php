@@ -51,7 +51,7 @@ class ExameMap implements IDaoMap, IDaoMap2
 		if (self::$FM == null)
 		{
 			self::$FM = Array();
-			self::$FM["Tipoexame"] = new FieldMap("Tipoexame","exame","tipoExame",true,FM_TYPE_INT,11,null,false);
+			self::$FM["Tipoexame"] = new FieldMap("Tipoexame","exame","tipoExame",true,FM_TYPE_INT,11,null,true);
 			self::$FM["Descricaoexame"] = new FieldMap("Descricaoexame","exame","descricaoExame",false,FM_TYPE_VARCHAR,1000,null,false);
 		}
 		return self::$FM;

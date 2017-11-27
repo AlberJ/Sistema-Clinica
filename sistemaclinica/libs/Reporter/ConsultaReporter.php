@@ -24,7 +24,7 @@ class ConsultaReporter extends Reporter
 
 	public $Codconsulta;
 	public $Dataconsulta;
-	public $Codpaciente;
+	public $Cpfpaciente;
 	public $Crmmedico;
 	public $Descricaoconsulta;
 
@@ -42,7 +42,7 @@ class ConsultaReporter extends Reporter
 			'custom value here...' as CustomFieldExample
 			,`consulta`.`codConsulta` as Codconsulta
 			,`consulta`.`dataConsulta` as Dataconsulta
-			,`consulta`.`codPaciente` as Codpaciente
+			,`consulta`.`cpfPaciente` as Cpfpaciente
 			,`consulta`.`crmMedico` as Crmmedico
 			,`consulta`.`descricaoConsulta` as Descricaoconsulta
 		from `consulta`";

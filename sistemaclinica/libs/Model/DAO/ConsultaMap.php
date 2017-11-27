@@ -53,7 +53,7 @@ class ConsultaMap implements IDaoMap, IDaoMap2
 			self::$FM = Array();
 			self::$FM["Codconsulta"] = new FieldMap("Codconsulta","consulta","codConsulta",true,FM_TYPE_INT,11,null,false);
 			self::$FM["Dataconsulta"] = new FieldMap("Dataconsulta","consulta","dataConsulta",false,FM_TYPE_DATE,null,null,false);
-			self::$FM["Codpaciente"] = new FieldMap("Codpaciente","consulta","codPaciente",false,FM_TYPE_INT,11,null,false);
+			self::$FM["Cpfpaciente"] = new FieldMap("Cpfpaciente","consulta","cpfPaciente",false,FM_TYPE_VARCHAR,11,null,false);
 			self::$FM["Crmmedico"] = new FieldMap("Crmmedico","consulta","crmMedico",false,FM_TYPE_INT,11,null,false);
 			self::$FM["Descricaoconsulta"] = new FieldMap("Descricaoconsulta","consulta","descricaoConsulta",false,FM_TYPE_TEXT,null,null,false);
 		}
@@ -70,7 +70,7 @@ class ConsultaMap implements IDaoMap, IDaoMap2
 			self::$KM = Array();
 			self::$KM["FK_CONSULTA"] = new KeyMap("FK_CONSULTA", "Codconsulta", "Prescricao", "Codconsulta", KM_TYPE_ONETOMANY, KM_LOAD_LAZY);  // use KM_LOAD_EAGER with caution here (one-to-one relationships only)
 			self::$KM["FK_MEDICO"] = new KeyMap("FK_MEDICO", "Crmmedico", "Medico", "Crm", KM_TYPE_MANYTOONE, KM_LOAD_LAZY); // you change to KM_LOAD_EAGER here or (preferrably) make the change in _config.php
-			self::$KM["FK_PACIENTE"] = new KeyMap("FK_PACIENTE", "Codpaciente", "Paciente", "Codpaciente", KM_TYPE_MANYTOONE, KM_LOAD_LAZY); // you change to KM_LOAD_EAGER here or (preferrably) make the change in _config.php
+			self::$KM["FK_PACIENTE"] = new KeyMap("FK_PACIENTE", "Cpfpaciente", "Paciente", "Cpf", KM_TYPE_MANYTOONE, KM_LOAD_LAZY); // you change to KM_LOAD_EAGER here or (preferrably) make the change in _config.php
 		}
 		return self::$KM;
 	}

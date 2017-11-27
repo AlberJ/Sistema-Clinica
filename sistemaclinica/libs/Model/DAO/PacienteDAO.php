@@ -39,16 +39,13 @@ class PacienteDAO extends Phreezable
 	/** @var string */
 	public $Tiposanguineo;
 
-	/** @var int */
-	public $Codpaciente;
-
 
 	/**
-	 * Returns a dataset of Consulta objects with matching Codpaciente
+	 * Returns a dataset of Consulta objects with matching Cpfpaciente
 	 * @param Criteria
 	 * @return DataSet
 	 */
-	public function GetCodpacienteConsultas($criteria = null)
+	public function GetCpfpacienteConsultas($criteria = null)
 	{
 		return $this->_phreezer->GetOneToMany($this, "FK_PACIENTE", $criteria);
 	}

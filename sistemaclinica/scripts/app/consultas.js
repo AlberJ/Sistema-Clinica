@@ -223,18 +223,18 @@ var page = {
 		
 		$('.timepicker-default').timepicker({ defaultTime: 'value' });
 
-		// populate the dropdown options for codpaciente
+		// populate the dropdown options for cpfpaciente
 		// TODO: load only the selected value, then fetch all options when the drop-down is clicked
-		var codpacienteValues = new model.PacienteCollection();
-		codpacienteValues.fetch({
+		var cpfpacienteValues = new model.PacienteCollection();
+		cpfpacienteValues.fetch({
 			success: function(c){
-				var dd = $('#codpaciente');
+				var dd = $('#cpfpaciente');
 				dd.append('<option value=""></option>');
 				c.forEach(function(item,index) {
 					dd.append(app.getOptionHtml(
-						item.get('codpaciente'),
+						item.get('cpf'),
 						item.get('cpf'), // TODO: change fieldname if the dropdown doesn't show the desired column
-						page.consulta.get('codpaciente') == item.get('codpaciente')
+						page.consulta.get('cpfpaciente') == item.get('cpf')
 					));
 				});
 				
@@ -317,7 +317,7 @@ var page = {
 		page.consulta.save({
 			'codconsulta': $('input#codconsulta').val(),
 			'dataconsulta': $('input#dataconsulta').val(),
-			'codpaciente': $('select#codpaciente').val(),
+			'cpfpaciente': $('select#cpfpaciente').val(),
 			'crmmedico': $('select#crmmedico').val(),
 			'descricaoconsulta': $('textarea#descricaoconsulta').val()
 		}, {

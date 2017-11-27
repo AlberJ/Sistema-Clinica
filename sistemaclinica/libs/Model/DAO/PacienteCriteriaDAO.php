@@ -111,21 +111,6 @@ class PacienteCriteriaDAO extends Criteria
 	public $Tiposanguineo_IsEmpty;
 	public $Tiposanguineo_BitwiseOr;
 	public $Tiposanguineo_BitwiseAnd;
-	public $Codpaciente_Equals;
-	public $Codpaciente_NotEquals;
-	public $Codpaciente_IsLike;
-	public $Codpaciente_IsNotLike;
-	public $Codpaciente_BeginsWith;
-	public $Codpaciente_EndsWith;
-	public $Codpaciente_GreaterThan;
-	public $Codpaciente_GreaterThanOrEqual;
-	public $Codpaciente_LessThan;
-	public $Codpaciente_LessThanOrEqual;
-	public $Codpaciente_In;
-	public $Codpaciente_IsNotEmpty;
-	public $Codpaciente_IsEmpty;
-	public $Codpaciente_BitwiseOr;
-	public $Codpaciente_BitwiseAnd;
 
 }
 

@@ -263,7 +263,7 @@ var page = {
 		app.showProgress('modelLoader');
 
 		page.exame.save({
-			'tipoexame': $('input#tipoexame').val(),
+
 			'descricaoexame': $('input#descricaoexame').val()
 		}, {
 			wait: true,

@@ -1,5 +1,5 @@
 <?php
-/** @package    BANCOCLINICAMODELO::Controller */
+/** @package    sistemaclinica::Controller */
 
 /** import supporting libraries */
 require_once("AppBaseController.php");
@@ -10,7 +10,7 @@ require_once("Model/Exame.php");
  * controller is responsible for processing input from the user, reading/updating
  * the model as necessary and displaying the appropriate view.
  *
- * @package BANCOCLINICAMODELO::Controller
+ * @package sistemaclinica::Controller
  * @author ClassBuilder
  * @version 1.0
  */
@@ -150,7 +150,9 @@ class ExameController extends AppBaseController
 
 			// TODO: any fields that should not be inserted by the user should be commented out
 
-			$exame->Tipoexame = $this->SafeGetVal($json, 'tipoexame');
+			// this is an auto-increment.  uncomment if updating is allowed
+			// $exame->Tipoexame = $this->SafeGetVal($json, 'tipoexame');
+
 			$exame->Descricaoexame = $this->SafeGetVal($json, 'descricaoexame');
 
 			$exame->Validate();
@@ -162,8 +164,7 @@ class ExameController extends AppBaseController
 			}
 			else
 			{
-				// since the primary key is not auto-increment we must force the insert here
-				$exame->Save(true);
+				$exame->Save();
 				$this->RenderJSON($exame, $this->JSONPCallback(), true, $this->SimpleObjectParams());
 			}
 
@@ -217,13 +218,6 @@ class ExameController extends AppBaseController
 		catch (Exception $ex)
 		{
 
-			// this table does not have an auto-increment primary key, so it is semantically correct to
-			// issue a REST PUT request, however we have no way to know whether to insert or update.
-			// if the record is not found, this exception will indicate that this is an insert request
-			if (is_a($ex,'NotFoundException'))
-			{
-				return $this->Create();
-			}
 
 			$this->RenderExceptionJSON($ex);
 		}

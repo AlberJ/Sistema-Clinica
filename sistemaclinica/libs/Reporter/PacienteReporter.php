@@ -28,7 +28,6 @@ class PacienteReporter extends Reporter
 	public $Telefone;
 	public $Datanasc;
 	public $Tiposanguineo;
-	public $Codpaciente;
 
 	/*
 	* GetCustomQuery returns a fully formed SQL statement.  The result columns
@@ -48,7 +47,6 @@ class PacienteReporter extends Reporter
 			,`paciente`.`Telefone` as Telefone
 			,`paciente`.`DataNasc` as Datanasc
 			,`paciente`.`TipoSanguineo` as Tiposanguineo
-			,`paciente`.`CodPaciente` as Codpaciente
 		from `paciente`";
 
 		// the criteria can be used or you can write your own custom logic.

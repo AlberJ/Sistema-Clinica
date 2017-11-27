@@ -1,5 +1,5 @@
 <?php
-/** @package    BANCOCLINICAMODELO::Controller */
+/** @package    sistemaclinica::Controller */
 
 /** import supporting libraries */
 require_once("verysimple/Phreeze/Controller.php");
@@ -10,7 +10,7 @@ require_once("verysimple/Phreeze/Controller.php");
  * class or any code, however you may use if for application-wide
  * functions such as authentication
  *
- * @package BANCOCLINICAMODELO::Controller
+ * @package sistemaclinica::Controller
  * @author ClassBuilder
  * @version 1.0
  */
@@ -28,7 +28,7 @@ class AppBaseController extends Controller
 	protected function Init()
 	{
 		// TODO: add app-wide bootsrap code
-		
+
 		// EXAMPLE: require authentication to access the app
 		/*
 		if ( !in_array($this->GetRouter()->GetUri(),array('login','loginform','logout')) )

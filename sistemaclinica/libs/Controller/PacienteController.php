@@ -1,5 +1,5 @@
 <?php
-/** @package    BANCOCLINICAMODELO::Controller */
+/** @package    sistemaclinica::Controller */
 
 /** import supporting libraries */
 require_once("AppBaseController.php");
@@ -10,7 +10,7 @@ require_once("Model/Paciente.php");
  * controller is responsible for processing input from the user, reading/updating
  * the model as necessary and displaying the appropriate view.
  *
- * @package BANCOCLINICAMODELO::Controller
+ * @package sistemaclinica::Controller
  * @author ClassBuilder
  * @version 1.0
  */
@@ -52,7 +52,7 @@ class PacienteController extends AppBaseController
 			// TODO: this will limit results based on all properties included in the filter list 
 			$filter = RequestUtil::Get('filter');
 			if ($filter) $criteria->AddFilter(
-				new CriteriaFilter('Cpf,Nome,Convenio,Telefone,Datanasc,Tiposanguineo,Codpaciente'
+				new CriteriaFilter('Cpf,Nome,Convenio,Telefone,Datanasc,Tiposanguineo'
 				, '%'.$filter.'%')
 			);
 
@@ -121,7 +121,7 @@ class PacienteController extends AppBaseController
 	{
 		try
 		{
-			$pk = $this->GetRouter()->GetUrlParam('codpaciente');
+			$pk = $this->GetRouter()->GetUrlParam('cpf');
 			$paciente = $this->Phreezer->Get('Paciente',$pk);
 			$this->RenderJSON($paciente, $this->JSONPCallback(), true, $this->SimpleObjectParams());
 		}
@@ -156,7 +156,6 @@ class PacienteController extends AppBaseController
 			$paciente->Telefone = $this->SafeGetVal($json, 'telefone');
 			$paciente->Datanasc = date('Y-m-d H:i:s',strtotime($this->SafeGetVal($json, 'datanasc')));
 			$paciente->Tiposanguineo = $this->SafeGetVal($json, 'tiposanguineo');
-			$paciente->Codpaciente = $this->SafeGetVal($json, 'codpaciente');
 
 			$paciente->Validate();
 			$errors = $paciente->GetValidationErrors();
@@ -194,20 +193,19 @@ class PacienteController extends AppBaseController
 				throw new Exception('The request body does not contain valid JSON');
 			}
 
-			$pk = $this->GetRouter()->GetUrlParam('codpaciente');
+			$pk = $this->GetRouter()->GetUrlParam('cpf');
 			$paciente = $this->Phreezer->Get('Paciente',$pk);
 
 			// TODO: any fields that should not be updated by the user should be commented out
 
-			$paciente->Cpf = $this->SafeGetVal($json, 'cpf', $paciente->Cpf);
+			// this is a primary key.  uncomment if updating is allowed
+			// $paciente->Cpf = $this->SafeGetVal($json, 'cpf', $paciente->Cpf);
+
 			$paciente->Nome = $this->SafeGetVal($json, 'nome', $paciente->Nome);
 			$paciente->Convenio = $this->SafeGetVal($json, 'convenio', $paciente->Convenio);
 			$paciente->Telefone = $this->SafeGetVal($json, 'telefone', $paciente->Telefone);
 			$paciente->Datanasc = date('Y-m-d H:i:s',strtotime($this->SafeGetVal($json, 'datanasc', $paciente->Datanasc)));
 			$paciente->Tiposanguineo = $this->SafeGetVal($json, 'tiposanguineo', $paciente->Tiposanguineo);
-			// this is a primary key.  uncomment if updating is allowed
-			// $paciente->Codpaciente = $this->SafeGetVal($json, 'codpaciente', $paciente->Codpaciente);
-
 
 			$paciente->Validate();
 			$errors = $paciente->GetValidationErrors();
@@ -249,7 +247,7 @@ class PacienteController extends AppBaseController
 						
 			// TODO: if a soft delete is prefered, change this to update the deleted flag instead of hard-deleting
 
-			$pk = $this->GetRouter()->GetUrlParam('codpaciente');
+			$pk = $this->GetRouter()->GetUrlParam('cpf');
 			$paciente = $this->Phreezer->Get('Paciente',$pk);
 
 			$paciente->Delete();

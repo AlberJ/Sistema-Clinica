@@ -51,13 +51,12 @@ class PacienteMap implements IDaoMap, IDaoMap2
 		if (self::$FM == null)
 		{
 			self::$FM = Array();
-			self::$FM["Cpf"] = new FieldMap("Cpf","paciente","CPF",false,FM_TYPE_VARCHAR,11,null,false);
+			self::$FM["Cpf"] = new FieldMap("Cpf","paciente","CPF",true,FM_TYPE_VARCHAR,11,null,false);
 			self::$FM["Nome"] = new FieldMap("Nome","paciente","Nome",false,FM_TYPE_VARCHAR,100,null,false);
 			self::$FM["Convenio"] = new FieldMap("Convenio","paciente","Convenio",false,FM_TYPE_VARCHAR,100,null,false);
 			self::$FM["Telefone"] = new FieldMap("Telefone","paciente","Telefone",false,FM_TYPE_VARCHAR,30,null,false);
 			self::$FM["Datanasc"] = new FieldMap("Datanasc","paciente","DataNasc",false,FM_TYPE_DATE,null,null,false);
 			self::$FM["Tiposanguineo"] = new FieldMap("Tiposanguineo","paciente","TipoSanguineo",false,FM_TYPE_VARCHAR,4,null,false);
-			self::$FM["Codpaciente"] = new FieldMap("Codpaciente","paciente","CodPaciente",true,FM_TYPE_INT,11,null,false);
 		}
 		return self::$FM;
 	}
@@ -70,7 +69,7 @@ class PacienteMap implements IDaoMap, IDaoMap2
 		if (self::$KM == null)
 		{
 			self::$KM = Array();
-			self::$KM["FK_PACIENTE"] = new KeyMap("FK_PACIENTE", "Codpaciente", "Consulta", "Codpaciente", KM_TYPE_ONETOMANY, KM_LOAD_LAZY);  // use KM_LOAD_EAGER with caution here (one-to-one relationships only)
+			self::$KM["FK_PACIENTE"] = new KeyMap("FK_PACIENTE", "Cpf", "Consulta", "Cpfpaciente", KM_TYPE_ONETOMANY, KM_LOAD_LAZY);  // use KM_LOAD_EAGER with caution here (one-to-one relationships only)
 		}
 		return self::$KM;
 	}

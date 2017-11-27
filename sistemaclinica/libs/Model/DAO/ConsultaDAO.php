@@ -27,8 +27,8 @@ class ConsultaDAO extends Phreezable
 	/** @var date */
 	public $Dataconsulta;
 
-	/** @var int */
-	public $Codpaciente;
+	/** @var string */
+	public $Cpfpaciente;
 
 	/** @var int */
 	public $Crmmedico;
@@ -57,10 +57,10 @@ class ConsultaDAO extends Phreezable
 	}
 
 	/**
-	 * Returns the foreign object based on the value of Codpaciente
+	 * Returns the foreign object based on the value of Cpfpaciente
 	 * @return Paciente
 	 */
-	public function GetCodpacientePaciente()
+	public function GetCpfpacientePaciente()
 	{
 		return $this->_phreezer->GetManyToOne($this, "FK_PACIENTE");
 	}

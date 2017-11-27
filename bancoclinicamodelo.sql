@@ -32,11 +32,11 @@ DROP TABLE IF EXISTS `consulta`;
 CREATE TABLE IF NOT EXISTS `consulta` (
   `codConsulta` int(11) NOT NULL,
   `dataConsulta` date NOT NULL,
-  `codPaciente` int(11) NOT NULL,
+  `cpfPaciente` varchar(11) NOT NULL,
   `crmMedico` int(11) NOT NULL,
   `descricaoConsulta` text NOT NULL,
   PRIMARY KEY (`codConsulta`) USING BTREE,
-  KEY `codPaciente` (`codPaciente`) USING BTREE,
+  KEY `cpfPaciente` (`cpfPaciente`) USING BTREE,
   KEY `crmMedico` (`crmMedico`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `consulta` (
 
 DROP TABLE IF EXISTS `exame`;
 CREATE TABLE IF NOT EXISTS `exame` (
-  `tipoExame` int(11) NOT NULL,
+  `tipoExame` int(11) NOT NULL AUTO_INCREMENT,
   `descricaoExame` varchar(1000) NOT NULL,
   PRIMARY KEY (`tipoExame`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -56,9 +56,6 @@ CREATE TABLE IF NOT EXISTS `exame` (
 --
 -- Extraindo dados da tabela `exame`
 --
-
-INSERT INTO `exame` (`tipoExame`, `descricaoExame`) VALUES
-(1234, 'Fezes');
 
 -- --------------------------------------------------------
 
@@ -77,10 +74,6 @@ CREATE TABLE IF NOT EXISTS `medicamento` (
 --
 -- Extraindo dados da tabela `medicamento`
 --
-
-INSERT INTO `medicamento` (`cod_medicamento`, `Nome`, `Descricao`) VALUES
-(1234, 'paracetamol', 'Tylenol');
-
 -- --------------------------------------------------------
 
 --
@@ -111,16 +104,13 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   `Telefone` varchar(30) NOT NULL,
   `DataNasc` date NOT NULL,
   `TipoSanguineo` varchar(4) DEFAULT NULL,
-  `CodPaciente` int(11) NOT NULL,
-  PRIMARY KEY (`CodPaciente`)
+  PRIMARY KEY (`CPF`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `paciente`
 --
 
-INSERT INTO `paciente` (`CPF`, `Nome`, `Convenio`, `Telefone`, `DataNasc`, `TipoSanguineo`, `CodPaciente`) VALUES
-('07272344474', 'Gilberto Neto', 'GEAP', '2315013', '2017-11-24', '', 4);
 
 -- --------------------------------------------------------
 
@@ -150,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `prescricao` (
 --
 ALTER TABLE `consulta`
   ADD CONSTRAINT `FK_MEDICO` FOREIGN KEY (`crmMedico`) REFERENCES `medico` (`CRM`),
-  ADD CONSTRAINT `FK_PACIENTE` FOREIGN KEY (`codPaciente`) REFERENCES `paciente` (`CodPaciente`);
+  ADD CONSTRAINT `FK_PACIENTE` FOREIGN KEY (`cpfPaciente`) REFERENCES `paciente` (`CPF`);
 
 --
 -- Limitadores para a tabela `prescricao`

@@ -1,5 +1,5 @@
 <?php
-/** @package    BANCOCLINICAMODELO::Controller */
+/** @package    sistemaclinica::Controller */
 
 /** import supporting libraries */
 require_once("AppBaseController.php");
@@ -10,7 +10,7 @@ require_once("Model/Consulta.php");
  * controller is responsible for processing input from the user, reading/updating
  * the model as necessary and displaying the appropriate view.
  *
- * @package BANCOCLINICAMODELO::Controller
+ * @package sistemaclinica::Controller
  * @author ClassBuilder
  * @version 1.0
  */
@@ -52,7 +52,7 @@ class ConsultaController extends AppBaseController
 			// TODO: this will limit results based on all properties included in the filter list 
 			$filter = RequestUtil::Get('filter');
 			if ($filter) $criteria->AddFilter(
-				new CriteriaFilter('Codconsulta,Dataconsulta,Codpaciente,Crmmedico,Descricaoconsulta'
+				new CriteriaFilter('Codconsulta,Dataconsulta,Cpfpaciente,Crmmedico,Descricaoconsulta'
 				, '%'.$filter.'%')
 			);
 
@@ -152,7 +152,7 @@ class ConsultaController extends AppBaseController
 
 			$consulta->Codconsulta = $this->SafeGetVal($json, 'codconsulta');
 			$consulta->Dataconsulta = date('Y-m-d H:i:s',strtotime($this->SafeGetVal($json, 'dataconsulta')));
-			$consulta->Codpaciente = $this->SafeGetVal($json, 'codpaciente');
+			$consulta->Cpfpaciente = $this->SafeGetVal($json, 'cpfpaciente');
 			$consulta->Crmmedico = $this->SafeGetVal($json, 'crmmedico');
 			$consulta->Descricaoconsulta = $this->SafeGetVal($json, 'descricaoconsulta');
 
@@ -201,7 +201,7 @@ class ConsultaController extends AppBaseController
 			// $consulta->Codconsulta = $this->SafeGetVal($json, 'codconsulta', $consulta->Codconsulta);
 
 			$consulta->Dataconsulta = date('Y-m-d H:i:s',strtotime($this->SafeGetVal($json, 'dataconsulta', $consulta->Dataconsulta)));
-			$consulta->Codpaciente = $this->SafeGetVal($json, 'codpaciente', $consulta->Codpaciente);
+			$consulta->Cpfpaciente = $this->SafeGetVal($json, 'cpfpaciente', $consulta->Cpfpaciente);
 			$consulta->Crmmedico = $this->SafeGetVal($json, 'crmmedico', $consulta->Crmmedico);
 			$consulta->Descricaoconsulta = $this->SafeGetVal($json, 'descricaoconsulta', $consulta->Descricaoconsulta);
 

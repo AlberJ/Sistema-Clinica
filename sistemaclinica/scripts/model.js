@@ -1,5 +1,5 @@
 /**
- * backbone model definitions for BANCOCLINICAMODELO
+ * backbone model definitions for sistemaclinica
  */
 
 /**
@@ -140,13 +140,13 @@ model.ConsultaModel = Backbone.Model.extend({
 	idAttribute: 'codconsulta',
 	codconsulta: '',
 	dataconsulta: '',
-	codpaciente: '',
+	cpfpaciente: '',
 	crmmedico: '',
 	descricaoconsulta: '',
 	defaults: {
 		'codconsulta': null,
 		'dataconsulta': new Date(),
-		'codpaciente': '',
+		'cpfpaciente': '',
 		'crmmedico': '',
 		'descricaoconsulta': ''
 	}
@@ -239,22 +239,20 @@ model.MedicoCollection = model.AbstractCollection.extend({
  */
 model.PacienteModel = Backbone.Model.extend({
 	urlRoot: 'api/paciente',
-	idAttribute: 'codpaciente',
+	idAttribute: 'cpf',
 	cpf: '',
 	nome: '',
 	convenio: '',
 	telefone: '',
 	datanasc: '',
 	tiposanguineo: '',
-	codpaciente: '',
 	defaults: {
-		'cpf': '',
+		'cpf': null,
 		'nome': '',
 		'convenio': '',
 		'telefone': '',
 		'datanasc': new Date(),
-		'tiposanguineo': '',
-		'codpaciente': null
+		'tiposanguineo': ''
 	}
 });
 

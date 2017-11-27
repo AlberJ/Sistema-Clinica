@@ -1,6 +1,6 @@
 <?php
 /**
- * @package BANCOCLINICAMODELO
+ * @package sistemaclinica
  *
  * APPLICATION-WIDE CONFIGURATION SETTINGS
  *
@@ -19,6 +19,13 @@
  * If the application doesn't detect this correctly then it can be set explicitly
  */
 if (!GlobalConfig::$APP_ROOT) GlobalConfig::$APP_ROOT = realpath("./");
+
+/**
+ * check is needed to ensure asp_tags is not enabled
+ */
+if (ini_get('asp_tags')) 
+	die('<h3>Server Configuration Problem: asp_tags is enabled, but is not compatible with Savant.</h3>'
+	. '<p>You can disable asp_tags in .htaccess, php.ini or generate your app with another template engine such as Smarty.</p>');
 
 /**
  * INCLUDE PATH
@@ -47,14 +54,13 @@ require_once "App/ExampleUser.php";
 
 /**
  * RENDER ENGINE
- * Haters be hatin' on Smarty? You can use any template system that implements
+ * You can use any template system that implements
  * IRenderEngine for the view layer.  Phreeze provides pre-built
  * implementations for Smarty, Savant and plain PHP.
  */
-require_once 'verysimple/Phreeze/SmartyRenderEngine.php';
-GlobalConfig::$TEMPLATE_ENGINE = 'SmartyRenderEngine';
+require_once 'verysimple/Phreeze/SavantRenderEngine.php';
+GlobalConfig::$TEMPLATE_ENGINE = 'SavantRenderEngine';
 GlobalConfig::$TEMPLATE_PATH = GlobalConfig::$APP_ROOT . '/templates/';
-GlobalConfig::$TEMPLATE_CACHE_PATH = GlobalConfig::$APP_ROOT . '/templates_c/';
 
 /**
  * ROUTE MAP
@@ -66,7 +72,7 @@ GlobalConfig::$ROUTE_MAP = array(
 
 	// default controller when no route specified
 	'GET:' => array('route' => 'Default.Home'),
-
+		
 	// example authentication routes
 	'GET:loginform' => array('route' => 'SecureExample.LoginForm'),
 	'POST:login' => array('route' => 'SecureExample.Login'),
@@ -85,12 +91,12 @@ GlobalConfig::$ROUTE_MAP = array(
 		
 	// Exame
 	'GET:exames' => array('route' => 'Exame.ListView'),
-	'GET:exame/(:any)' => array('route' => 'Exame.SingleView', 'params' => array('tipoexame' => 1)),
+	'GET:exame/(:num)' => array('route' => 'Exame.SingleView', 'params' => array('tipoexame' => 1)),
 	'GET:api/exames' => array('route' => 'Exame.Query'),
 	'POST:api/exame' => array('route' => 'Exame.Create'),
-	'GET:api/exame/(:any)' => array('route' => 'Exame.Read', 'params' => array('tipoexame' => 2)),
-	'PUT:api/exame/(:any)' => array('route' => 'Exame.Update', 'params' => array('tipoexame' => 2)),
-	'DELETE:api/exame/(:any)' => array('route' => 'Exame.Delete', 'params' => array('tipoexame' => 2)),
+	'GET:api/exame/(:num)' => array('route' => 'Exame.Read', 'params' => array('tipoexame' => 2)),
+	'PUT:api/exame/(:num)' => array('route' => 'Exame.Update', 'params' => array('tipoexame' => 2)),
+	'DELETE:api/exame/(:num)' => array('route' => 'Exame.Delete', 'params' => array('tipoexame' => 2)),
 		
 	// Medicamento
 	'GET:medicamentos' => array('route' => 'Medicamento.ListView'),
@@ -112,12 +118,12 @@ GlobalConfig::$ROUTE_MAP = array(
 		
 	// Paciente
 	'GET:pacientes' => array('route' => 'Paciente.ListView'),
-	'GET:paciente/(:any)' => array('route' => 'Paciente.SingleView', 'params' => array('codpaciente' => 1)),
+	'GET:paciente/(:any)' => array('route' => 'Paciente.SingleView', 'params' => array('cpf' => 1)),
 	'GET:api/pacientes' => array('route' => 'Paciente.Query'),
 	'POST:api/paciente' => array('route' => 'Paciente.Create'),
-	'GET:api/paciente/(:any)' => array('route' => 'Paciente.Read', 'params' => array('codpaciente' => 2)),
-	'PUT:api/paciente/(:any)' => array('route' => 'Paciente.Update', 'params' => array('codpaciente' => 2)),
-	'DELETE:api/paciente/(:any)' => array('route' => 'Paciente.Delete', 'params' => array('codpaciente' => 2)),
+	'GET:api/paciente/(:any)' => array('route' => 'Paciente.Read', 'params' => array('cpf' => 2)),
+	'PUT:api/paciente/(:any)' => array('route' => 'Paciente.Update', 'params' => array('cpf' => 2)),
+	'DELETE:api/paciente/(:any)' => array('route' => 'Paciente.Delete', 'params' => array('cpf' => 2)),
 		
 	// Prescricao
 	'GET:prescricoes' => array('route' => 'Prescricao.ListView'),

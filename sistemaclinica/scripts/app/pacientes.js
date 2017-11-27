@@ -268,8 +268,7 @@ var page = {
 			'convenio': $('input#convenio').val(),
 			'telefone': $('input#telefone').val(),
 			'datanasc': $('input#datanasc').val(),
-			'tiposanguineo': $('input#tiposanguineo').val(),
-			'codpaciente': $('input#codpaciente').val()
+			'tiposanguineo': $('input#tiposanguineo').val()
 		}, {
 			wait: true,
 			success: function(){
