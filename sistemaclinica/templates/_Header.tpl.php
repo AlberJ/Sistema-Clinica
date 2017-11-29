@@ -61,29 +61,12 @@
 						</a>
 						<a class="brand" href="./">Acesso de Administradores</a>
 						<div class="nav-collapse collapse">
-							<ul class="nav">
-								<li <?php if ($this->nav=='pacientes') { echo 'class="active"'; } ?>><a href="./pacientes">Pacientes</a></li>
-								<li <?php if ($this->nav=='medicos') { echo 'class="active"'; } ?>><a href="./medicos">Medicos</a></li>
-								<li <?php if ($this->nav=='consultas') { echo 'class="active"'; } ?>><a href="./consultas">Consultas</a></li>
-
-							</ul>
-							<ul class="nav">
-								<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-								<li <?php if ($this->nav=='exames') { echo 'class="active"'; } ?>><a href="./exames">Exames</a></li>
-								<li <?php if ($this->nav=='medicamentos') { echo 'class="active"'; } ?>><a href="./medicamentos">Medicamentos</a></li>
-								<li <?php if ($this->nav=='prescricoes') { echo 'class="active"'; } ?>><a href="./prescricoes">Prescricões</a></li>
-								</ul>
-								</li>
-							</ul>
+		
 							<ul class="nav pull-right">
 								<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-lock"></i> Login <i class="caret"></i></a>
 								<ul class="dropdown-menu">
-									<li><a href="./loginform">Login</a></li>
 									<li class="divider"></li>
-									<li><a href="./secureuser">Logar como Usuário <i class="icon-lock"></i></a></li>
 									<li><a href="./secureadmin">Logar como Admin <i class="icon-lock"></i></a></li>
 								</ul>
 								</li>

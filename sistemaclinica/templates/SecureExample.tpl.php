@@ -19,25 +19,23 @@
 	<?php if ($this->page == 'login') { ?>
 
 		<div class="hero-unit">
-			<h1>Login Example</h1>
-			<p>This is an example of Phreeze authentication.  The default credentials are <strong>demo/pass</strong> and <strong>admin/pass</strong>.</p>
-			<p>
-				<a href="secureuser" class="btn btn-primary btn-large">Acesso para Médicos</a>
-				<a href="secureadmin" class="btn btn-primary btn-large">Acesso para Administrador</a>
+			<h1>Clinical System</h1></br>
+			<!-- <p>
+				<a href="secureadmin" class="btn btn-primary btn-large">Logar-se como Administrador</a>
 				<?php if (isset($this->currentUser)) { ?>
 					<a href="logout" class="btn btn-primary btn-large">Sair</a>
 				<?php } ?>
 			</p>
-		</div>
+		</div> -->
 
 		<form class="well" method="post" action="login">
 			<fieldset>
-			<legend>Enter your credentials</legend>
+			<legend>Informe seu usuário e senha</legend>
 				<div class="control-group">
-				<input id="username" name="username" type="text" placeholder="Username..." />
+				<input id="username" name="username" type="text" placeholder="Usuário" />
 				</div>
 				<div class="control-group">
-				<input id="password" name="password" type="password" placeholder="Password..." />
+				<input id="password" name="password" type="password" placeholder="Senha" />
 				</div>
 				<div class="control-group">
 				<button type="submit" class="btn btn-primary">Login</button>
@@ -48,12 +46,18 @@
 	<?php } else { ?>
 
 		<div class="hero-unit">
-			<h1>Secure <?php $this->eprint($this->page == 'userpage' ? 'User' : 'Admin'); ?> Page</h1>
-			<p>This page is accessible only to <?php $this->eprint($this->page == 'userpage' ? 'authenticated users' : 'administrators'); ?>.
-			You are currently logged in as '<strong><?php $this->eprint($this->currentUser->Username); ?></strong>'</p>
+			<h1>Acesse as seções abaixo </h1><br>
+
 			<p>
-				<a href="secureuser" class="btn btn-primary btn-large">Acesso de Médicos</a>
-				<a href="secureadmin" class="btn btn-primary btn-large">Acesso de Administrador</a>
+				<ul class="nav">
+					<li <?php if ($this->nav=='pacientes') { echo 'class="active"'; } ?>><a href="./pacientes">Pacientes</a></li>
+					<li <?php if ($this->nav=='medicos') { echo 'class="active"'; } ?>><a href="./medicos">Medicos</a></li>
+					<li <?php if ($this->nav=='consultas') { echo 'class="active"'; } ?>><a href="./consultas">Consultas</a></li>
+					<li <?php if ($this->nav=='exames') { echo 'class="active"'; } ?>><a href="./exames">Exames</a></li>
+					<li <?php if ($this->nav=='medicamentos') { echo 'class="active"'; } ?>><a href="./medicamentos">Medicamentos</a></li>
+					<li <?php if ($this->nav=='prescricoes') { echo 'class="active"'; } ?>><a href="./prescricoes">Prescricões</a></li>
+
+				</ul>
 				<a href="logout" class="btn btn-primary btn-large">Sair</a>
 			</p>
 		</div>
